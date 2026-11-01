@@ -80,7 +80,7 @@ public class SafeBankTest {
         assertEquals(new BigDecimal("55000.00"), account.getBalance());
 
         assertEquals(2, bankService.getHistory().size());
-        
+
         assertEquals("Opening Balance", bankService.getHistory().get(0).toString().split(":")[0].substring(11).trim());
         assertEquals("Deposit", bankService.getHistory().get(1).toString().split(":")[0].substring(11).trim());
     }
