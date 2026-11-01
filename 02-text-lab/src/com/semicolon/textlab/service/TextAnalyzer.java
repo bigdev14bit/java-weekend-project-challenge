@@ -1,11 +1,12 @@
 package com.semicolon.textlab.service;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TextAnalyzer {
-    private String originalText;
+    private final String originalText;
     private String editedText;
 
     public TextAnalyzer(String text) {
@@ -32,18 +33,14 @@ public class TextAnalyzer {
 
     public int getSentenceCount() {
         if (editedText.trim().isEmpty()) return 0;
-
         String normalized = editedText.trim().replaceAll("[.!?]+", ".");
-
         String[] parts = normalized.split("\\.");
-
         int count = 0;
         for (String part : parts) {
             if (!part.trim().isEmpty()) {
                 count++;
             }
         }
-
         return count;
     }
 
@@ -52,20 +49,22 @@ public class TextAnalyzer {
             editedText = "";
             return;
         }
-        StringBuilder sb = new StringBuilder();
+
+        StringBuilder builder = new StringBuilder();
         boolean lastWasSpace = false;
-        for (char c : editedText.trim().toCharArray()) {
-            if (Character.isWhitespace(c)) {
+
+        for (char charac : editedText.trim().toCharArray()) {
+            if (Character.isWhitespace(charac)) {
                 if (!lastWasSpace) {
-                    sb.append(' ');
+                    builder.append(' ');
                     lastWasSpace = true;
                 }
             } else {
-                sb.append(c);
+                builder.append(charac);
                 lastWasSpace = false;
             }
         }
-        editedText = sb.toString();
+        editedText = builder.toString();
     }
 
     public int countWordFrequency(String targetWord) {
@@ -86,7 +85,18 @@ public class TextAnalyzer {
 
         Pattern pattern = Pattern.compile("\\b" + Pattern.quote(targetWord.trim()) + "\\b", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(editedText);
-        editedText = matcher.replaceAll(Matcher.quoteReplacement(replacementWord));
+
+        StringBuilder builder = new StringBuilder();
+        int lastEnd = 0;
+
+        while (matcher.find()) {
+            builder.append(editedText, lastEnd, matcher.start());
+            builder.append(replacementWord);
+            lastEnd = matcher.end();
+        }
+        builder.append(editedText.substring(lastEnd));
+
+        editedText = builder.toString();
     }
 
     public boolean isPalindrome() {
