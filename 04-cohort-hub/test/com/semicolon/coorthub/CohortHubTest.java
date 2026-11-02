@@ -88,7 +88,7 @@ public class CohortHubTest {
         assertEquals("L01", sorted.get(0).getId());
         assertEquals("L02", sorted.get(1).getId());
         assertEquals("L03", sorted.get(2).getId());
-        
+
         Learner alice = manager.findLearner("L01");
         assertNotNull(alice);
         assertEquals("Alice", alice.getName());
