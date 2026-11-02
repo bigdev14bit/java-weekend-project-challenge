@@ -80,8 +80,8 @@ public class Main {
                     if (bank.getHistory().isEmpty()) {
                         System.out.println("No transactions yet.");
                     } else {
-                        for (Transaction t : bank.getHistory()) {
-                            System.out.println(t.toString());
+                        for (Transaction transaction : bank.getHistory()) {
+                            System.out.println(transaction.toString());
                         }
                     }
                     break;

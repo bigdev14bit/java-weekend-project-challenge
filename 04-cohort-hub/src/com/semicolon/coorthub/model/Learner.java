@@ -3,7 +3,7 @@ package com.semicolon.coorthub.model;
 import java.util.Objects;
 
 public class Learner {
-    private final String id; // Immutable identity
+    private final String id;
     private String name;
     private String email;
 
@@ -24,7 +24,6 @@ public class Learner {
     public void setName(String name) { this.name = name; }
     public void setEmail(String email) { this.email = email; }
 
-    // Consistent equals and hashCode using the immutable ID
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

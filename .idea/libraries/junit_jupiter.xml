@@ -1,6 +1,9 @@
 <component name="libraryTable">
   <library name="junit.jupiter" type="repository">
     <properties maven-id="org.junit.jupiter:junit-jupiter:5.9.1" />
+    <ANNOTATIONS>
+      <root url="file://$PROJECT_DIR$/04-cohort-hub/test" />
+    </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter/5.9.1/junit-jupiter-5.9.1.jar!/" />
       <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.9.1/junit-jupiter-api-5.9.1.jar!/" />

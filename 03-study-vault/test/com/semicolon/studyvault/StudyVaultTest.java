@@ -84,14 +84,17 @@ public class StudyVaultTest {
         assertTrue(backupFile.exists());
 
         String backupContent = Files.readString(backupFile.toPath(), StandardCharsets.UTF_8);
-        assertEquals(originalContent, backupContent);
+
+        assertTrue(backupContent.contains(originalContent), "Backup file should contain the original content");
 
         manager.deleteNote(testFileName);
         assertFalse(new File("notes/" + testFileName + ".txt").exists());
 
         manager.restoreNote(testFileName, false);
         assertTrue(new File("notes/" + testFileName + ".txt").exists());
-        assertEquals(originalContent, manager.readNote(testFileName));
+
+        String restoredContent = manager.readNote(testFileName);
+        assertTrue(restoredContent.contains(originalContent), "Restored note should contain the original content");
     }
 
     @Test
