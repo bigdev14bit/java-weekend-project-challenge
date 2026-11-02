@@ -101,7 +101,7 @@ public class StudyVaultTest {
         manager.createNote(testFileName, "Original", false);
 
         assertThrows(IOException.class, () -> manager.createNote(testFileName, "New", false));
-        
+
         manager.exportNote(testFileName);
         assertThrows(IOException.class, () -> manager.restoreNote(testFileName, false));
     }
